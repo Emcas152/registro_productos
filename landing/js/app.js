@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    function validateEmail(email) { 
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; 
+        return re.test(String(email).toLowerCase()); 
+
+    }
+
     function validateForm() {
         let isValid = true; // Bandera para verificar si el formulario es válido
 
@@ -17,7 +23,13 @@ $(document).ready(function() {
             isValid = false;
             $('#email').addClass('is-invalid');
         } else {
-            $('#email').removeClass('is-invalid');
+            if (!validateEmail(email)) {
+                isValid = false;
+                $('#email').addClass('is-invalid');
+                $('#email_invalid').text('el correo debe ser tipo email@ejemplo.com.');
+            } else {
+                $('#email').removeClass('is-invalid');
+            }
         }
 
         // Validar campo de contraseña
@@ -28,7 +40,12 @@ $(document).ready(function() {
         } else {
             $('#password').removeClass('is-invalid');
         }
-
+        // Validar campo de fecha de nacimiento
+        const fecha = $('#fecha_nacimiento').val();
+        if (fecha === '') {
+            isValid = false;
+            $('#fecha_nacimiento').addClass('is-invalid');
+        }
         return isValid;
     }
 
@@ -37,26 +54,30 @@ $(document).ready(function() {
         const today = new Date();
         let age = today.getFullYear() - birthDate.getFullYear();
         const monthDifference = today.getMonth() - birthDate.getMonth();
+        console.log(age);
         if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
             age--;
         }
+        console.log(age);
         if (age < 17) {
-            alert("Debes tener al menos 17 años para registrarte.");
             return false;
         }
     }
 
     $('#registrarse').on('click', function(event) {
+        
         event.preventDefault(); // Evita el envío del formulario por defecto
-        if (!ValidateAge()) {
-            return; // Detiene el proceso si la edad no es válida
-        }
         if (!validateForm()) {
             return; // Detiene el proceso si el formulario no es válido
         }
+        if (!ValidateAge()) {
+            $('#fecha_nacimiento').addClass('is-invalid');
+            $('#fecha_invalid').text('Debes tener al menos 17 años para registrarte.');
+            return; // Detiene el proceso si la edad es menor a 17
+        }
         $.ajax({
             type: 'POST',
-            url: '../../api/registro.php', // Cambia esto por la URL de tu script de procesamiento
+            url: 'http://localhost:8000/registro.php', // Cambia esto por la URL de tu script de procesamiento
             data: $('#formRegistro').serialize(), // Serializa los datos del formulario 
             success: function(response) {
                 // Maneja la respuesta del servidor
