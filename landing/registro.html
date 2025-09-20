@@ -19,7 +19,7 @@
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"> 
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> 
             <img src="./assets/logo.png" alt="Logo"class="logo"> 
-            <span class="fs-4">Simple header</span> 
+            <span class="fs-4">Prueba de registro</span> 
         </a> 
         <ul class="nav nav-pills"> 
             <li class="nav-item">
@@ -42,20 +42,32 @@
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+                <div class="invalid-feedback">
+                    Por favor ingresa un nombre válido.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo">
+                <div class="invalid-feedback">
+                    Por favor ingresa un correo electrónico válido.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+                <div class="invalid-feedback">
+                    Por favor ingresa una contraseña válida.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha de Nacimiento</label>
                 <input type="date" class="form-control" id="fecha"> 
+                <div class="invalid-feedback">
+                    Por favor ingresa una fecha válida.
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Registrarse</button>
+            <button id="registrarse" type="button" class="btn btn-primary">Registrarse</button>
     </div>
     <div class="b-example-divider"></div>
     <footer class="footer mt-auto py-3 bg-body-tertiary border-top"> 
