@@ -61,6 +61,8 @@ $(document).ready(function() {
         console.log(age);
         if (age < 17) {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -86,7 +88,7 @@ $(document).ready(function() {
                     text: '¡Te has registrado correctamente!',
                     icon: 'success',
                 }).then(() => {
-                    window.location.href = 'index.html'; // Redirige a la página de inicio de sesión
+                    // window.location.href = 'index.html'; // Redirige a la página de inicio de sesión
                 });
             },
             error: function(xhr, status, error) {
@@ -102,7 +104,11 @@ $(document).ready(function() {
                         break;
                     default:
                         console.log(xhr.responseText);
-                        alert("Ocurrió un error inesperado.");
+                        swal.fire({
+                            title: 'Error',
+                            text: 'Ocurrió un error inesperado. Inténtalo de nuevo.' + error,
+                            icon: 'error',
+                        });
                 }
             }
         });

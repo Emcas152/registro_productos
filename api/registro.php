@@ -1,5 +1,19 @@
 <?php
+// Permitir cualquier origen
+header("Access-Control-Allow-Origin: *");
+// Permitir métodos específicos
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+// Permitir cabeceras personalizadas
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+// Especificar el tipo de contenido de la respuesta
+header("Content-Type: charset=UTF-8");
+// Si la petición es OPTIONS, responder sin ejecutar más código
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 require_once "conexion.php";
+
 // Verificar si la petición es POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Sanitizar y validar datos recibidos
