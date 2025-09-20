@@ -2,6 +2,13 @@
 
 Este proyecto es una aplicación desarrollada en PHP y alojada en un entorno XAMPP.
 
+## Tecnologías
+
+- **Markdown:** Lenguaje de marcado ligero para documentación.
+- **PHP:** Lenguaje de programación del lado del servidor.
+- **XAMPP:** Paquete que incluye Apache, MySQL y PHP para desarrollo local.
+- **MySQL:** Sistema de gestión de bases de datos relacional.
+
 ## Requisitos
 
 - PHP 7.x o superior
